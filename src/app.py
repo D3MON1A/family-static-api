@@ -43,8 +43,13 @@ def addNewMember():
 @app.route('/member/<int:member_id>', methods=['GET'])
 def getOneMember(member_id):
     member = jackson_family.get_member(member_id)
-    
     return jsonify(member), 200
+
+@app.route('/member/<int:member_id>', methods=['DELETE'])
+def deleteOneMember(member_id):
+    member = jackson_family.delete_member(member_id)
+    return jsonify({"done":True}),200
+
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
